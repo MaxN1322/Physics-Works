@@ -4,6 +4,8 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \title{\textbf{AP Physics C Lab: Rotational Inertia}}
 \author{Aaryan Manrao, Alexander Marynchev, Elijah Park, Joshua Tom, Maximus Neri}
@@ -45,9 +47,9 @@ The purpose of this lab is to determine how the distribution of the mass of an o
 
 \section*{Raw Data}
 \begin{itemize}[noitemsep]
-    \item \textbf{Hanging mass ($m$):} $0.2\text{ kg}$ (infinite significant figures as it is a given mass)
-    \item \textbf{Mandrel diameter ($D$):} $0.0385 \pm 0.0005\text{ m}$
-    \item \textbf{Axis to String ($r = D/2$):} $0.01925 \pm 0.00025\text{ m}$
+    \item \textbf{Hanging mass ($m$):} $0.2\text{ kg}$ (constant since given)
+    \item \textbf{Diameter ($D$):} $0.0385 \pm 0.0005\text{ m}$
+    \item \textbf{Radius ($r = D/2$):} $0.01925 \pm 0.00025\text{ m}$
 \end{itemize}
 
 \begin{table}[h!]
@@ -57,27 +59,27 @@ The purpose of this lab is to determine how the distribution of the mass of an o
 \toprule
 \textbf{Trial} & \textbf{Adjustable Mass Distance from Axis (m)} & \textbf{Mass Height (m)} & \textbf{Drop Time (s)} \\
 \midrule
-1 & No Adjustable Mass & $0.590 \pm 0.001$ & $4.47 \pm 0.5$ \\
-2 & $0.122 \pm 0.001$ & $0.590 \pm 0.001$ & $5.39 \pm 0.5$ \\
-3 & $0.132 \pm 0.001$ & $0.590 \pm 0.001$ & $5.82 \pm 0.5$ \\
-4 & $0.142 \pm 0.001$ & $0.590 \pm 0.001$ & $6.26 \pm 0.5$ \\
-5 & $0.152 \pm 0.001$ & $0.590 \pm 0.001$ & $6.81 \pm 0.5$ \\
-6 & $0.162 \pm 0.001$ & $0.590 \pm 0.001$ & $6.66 \pm 0.5$ \\
-7 & $0.172 \pm 0.001$ & $0.590 \pm 0.001$ & $6.93 \pm 0.5$ \\
-8 & $0.182 \pm 0.001$ & $0.590 \pm 0.001$ & $7.51 \pm 0.5$ \\
-9 & $0.192 \pm 0.001$ & $0.590 \pm 0.001$ & $7.89 \pm 0.5$ \\
-10 & $0.202 \pm 0.001$ & $0.590 \pm 0.001$ & $8.12 \pm 0.5$ \\
-11 & $0.212 \pm 0.001$ & $0.590 \pm 0.001$ & $8.37 \pm 0.5$ \\
-12 & $0.222 \pm 0.001$ & $0.590 \pm 0.001$ & $8.83 \pm 0.5$ \\
-13 & $0.232 \pm 0.001$ & $0.590 \pm 0.001$ & $9.06 \pm 0.5$ \\
-14 & $0.242 \pm 0.001$ & $0.590 \pm 0.001$ & $9.36 \pm 0.5$ \\
-15 & $0.252 \pm 0.001$ & $0.590 \pm 0.001$ & $9.47 \pm 0.5$ \\
-16 & $0.262 \pm 0.001$ & $0.590 \pm 0.001$ & $9.91 \pm 0.5$ \\
-17 & $0.272 \pm 0.001$ & $0.590 \pm 0.001$ & $10.40 \pm 0.5$ \\
-18 & $0.282 \pm 0.001$ & $0.590 \pm 0.001$ & $10.76 \pm 0.5$ \\
-19 & $0.292 \pm 0.001$ & $0.590 \pm 0.001$ & $11.12 \pm 0.5$ \\
-20 & $0.302 \pm 0.001$ & $0.590 \pm 0.001$ & $12.24 \pm 0.5$ \\
-21 & $0.312 \pm 0.001$ & $0.590 \pm 0.001$ & $13.64 \pm 0.5$ \\
+1 & No Adjustable Mass & $0.590 \pm 0.001$ & $4.47 \pm 0.05$ \\
+2 & $0.122 \pm 0.001$ & $0.590 \pm 0.001$ & $5.39 \pm 0.05$ \\
+3 & $0.132 \pm 0.001$ & $0.590 \pm 0.001$ & $5.82 \pm 0.05$ \\
+4 & $0.142 \pm 0.001$ & $0.590 \pm 0.001$ & $6.26 \pm 0.05$ \\
+5 & $0.152 \pm 0.001$ & $0.590 \pm 0.001$ & $6.81 \pm 0.05$ \\
+6 & $0.162 \pm 0.001$ & $0.590 \pm 0.001$ & $6.66 \pm 0.05$ \\
+7 & $0.172 \pm 0.001$ & $0.590 \pm 0.001$ & $6.93 \pm 0.05$ \\
+8 & $0.182 \pm 0.001$ & $0.590 \pm 0.001$ & $7.51 \pm 0.05$ \\
+9 & $0.192 \pm 0.001$ & $0.590 \pm 0.001$ & $7.89 \pm 0.05$ \\
+10 & $0.202 \pm 0.001$ & $0.590 \pm 0.001$ & $8.12 \pm 0.05$ \\
+11 & $0.212 \pm 0.001$ & $0.590 \pm 0.001$ & $8.37 \pm 0.05$ \\
+12 & $0.222 \pm 0.001$ & $0.590 \pm 0.001$ & $8.83 \pm 0.05$ \\
+13 & $0.232 \pm 0.001$ & $0.590 \pm 0.001$ & $9.06 \pm 0.05$ \\
+14 & $0.242 \pm 0.001$ & $0.590 \pm 0.001$ & $9.36 \pm 0.05$ \\
+15 & $0.252 \pm 0.001$ & $0.590 \pm 0.001$ & $9.47 \pm 0.05$ \\
+16 & $0.262 \pm 0.001$ & $0.590 \pm 0.001$ & $9.91 \pm 0.05$ \\
+17 & $0.272 \pm 0.001$ & $0.590 \pm 0.001$ & $10.40 \pm 0.05$ \\
+18 & $0.282 \pm 0.001$ & $0.590 \pm 0.001$ & $10.76 \pm 0.05$ \\
+19 & $0.292 \pm 0.001$ & $0.590 \pm 0.001$ & $11.12 \pm 0.05$ \\
+20 & $0.302 \pm 0.001$ & $0.590 \pm 0.001$ & $12.24 \pm 0.05$ \\
+21 & $0.312 \pm 0.001$ & $0.590 \pm 0.001$ & $13.64 \pm 0.05$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -86,337 +88,358 @@ The purpose of this lab is to determine how the distribution of the mass of an o
 
 \textbf{Trial 1 — Demonstrator Only (No Adjustable Masses):}
 \begin{align*}
-a &= \frac{2(0.590)}{(4.47)^2} = 0.0591\text{ m/s}^2 \\
-\delta a &= 0.0591\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{4.47}\right)^2} = 0.0132\text{ m/s}^2 \\
-g - a &= 9.807 - 0.0591 = 9.748 \pm 0.013\text{ m/s}^2 \\
-T &= 0.2(9.748) = 1.950\text{ N}, \qquad \delta T = 0.2(0.0132) = 0.003\text{ N} \\
-\tau &= (1.950)(0.01925) = 0.0375\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0375\sqrt{\left(\frac{0.003}{1.950}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.0591}{0.01925} = 3.07\text{ rad/s}^2 \\
-\delta\alpha &= 3.07\sqrt{\left(\frac{0.0132}{0.0591}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.69\text{ rad/s}^2 \\
-I &= \frac{0.0375}{3.07} = 0.0122\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.0122\sqrt{\left(\frac{0.0005}{0.0375}\right)^2 + \left(\frac{0.69}{3.07}\right)^2} = 0.0027\text{ kg}\cdot\text{m}^2 \\
-I_{\text{demo}} &= 0.0122 \pm 0.0027\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(4.47 \pm 0.05)^2} = 0.0591 \pm 0.0013\text{ m/s}^2 \\
+\delta a &= 0.0591\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{4.47}\right)^2} = 0.0013\text{ m/s}^2 \\
+g - a &= 9.807 - (0.0591 \pm 0.0013) = 9.748 \pm 0.001\text{ m/s}^2 \\
+T &= 0.2(9.748 \pm 0.001) = 1.950 \pm 0.0003\text{ N} \\
+\delta T &= 0.2(0.0013) = 0.0003\text{ N} \\
+\tau &= (1.950 \pm 0.0003)(0.01925 \pm 0.00025) = 0.0375 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0375\sqrt{\left(\frac{0.0003}{1.950}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.0591 \pm 0.0013}{0.01925 \pm 0.00025} = 3.07 \pm 0.08\text{ rad/s}^2 \\
+\delta\alpha &= 3.07\sqrt{\left(\frac{0.0013}{0.0591}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.08\text{ rad/s}^2 \\
+I &= \frac{0.0375 \pm 0.0005}{3.07 \pm 0.08} = 0.0122 \pm 0.0004\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0122\sqrt{\left(\frac{0.0005}{0.0375}\right)^2 + \left(\frac{0.08}{3.07}\right)^2} = 0.0004\text{ kg}\cdot\text{m}^2 \\
+I_{\text{demo}} &= 0.0122 \pm 0.0004\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 2 — $R = 0.122 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(5.39)^2} = 0.041\text{ m/s}^2 \\
-\delta a &= 0.041\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{5.39}\right)^2} = 0.008\text{ m/s}^2 \\
-g - a &= 9.807 - 0.041 = 9.766 \pm 0.008\text{ m/s}^2 \\
-T &= 0.2(9.766) = 1.953\text{ N}, \qquad \delta T = 0.2(0.008) = 0.002\text{ N} \\
-\tau &= (1.953)(0.01925) = 0.0376\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0376\sqrt{\left(\frac{0.002}{1.953}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.041}{0.01925} = 2.11\text{ rad/s}^2 \\
-\delta\alpha &= 2.11\sqrt{\left(\frac{0.008}{0.041}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.39\text{ rad/s}^2 \\
-I &= \frac{0.0376}{2.11} = 0.018\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.018\sqrt{\left(\frac{0.0005}{0.0376}\right)^2 + \left(\frac{0.39}{2.11}\right)^2} = 0.003\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.018 - 0.0122 = 0.006\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.003^2 + 0.0027^2} = 0.004\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(5.39 \pm 0.05)^2} = 0.04062 \pm 0.00076\text{ m/s}^2 \\
+\delta a &= 0.04062\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{5.39}\right)^2} = 0.00076\text{ m/s}^2 \\
+g - a &= 9.807 - (0.04062 \pm 0.00076) = 9.7664 \pm 0.0008\text{ m/s}^2 \\
+T &= 0.2(9.7664 \pm 0.0008) = 1.9533 \pm 0.0002\text{ N} \\
+\delta T &= 0.2(0.00076) = 0.0002\text{ N} \\
+\tau &= (1.9533 \pm 0.0002)(0.01925 \pm 0.00025) = 0.0376 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0376\sqrt{\left(\frac{0.0002}{1.9533}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.04062 \pm 0.00076}{0.01925 \pm 0.00025} = 2.110 \pm 0.048\text{ rad/s}^2 \\
+\delta\alpha &= 2.110\sqrt{\left(\frac{0.00076}{0.04062}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.048\text{ rad/s}^2 \\
+I &= \frac{0.0376 \pm 0.0005}{2.110 \pm 0.048} = 0.0178 \pm 0.0005\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0178\sqrt{\left(\frac{0.0005}{0.0376}\right)^2 + \left(\frac{0.048}{2.110}\right)^2} = 0.0005\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0178 \pm 0.0005) - (0.0122 \pm 0.0004) = 0.0056 \pm 0.0006\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0005^2 + 0.0004^2} = 0.0006\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 3 — $R = 0.132 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(5.82)^2} = 0.035\text{ m/s}^2 \\
-\delta a &= 0.035\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{5.82}\right)^2} = 0.006\text{ m/s}^2 \\
-g - a &= 9.807 - 0.035 = 9.772 \pm 0.006\text{ m/s}^2 \\
-T &= 0.2(9.772) = 1.954\text{ N}, \qquad \delta T = 0.2(0.006) = 0.001\text{ N} \\
-\tau &= (1.954)(0.01925) = 0.0376\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0376\sqrt{\left(\frac{0.001}{1.954}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.035}{0.01925} = 1.81\text{ rad/s}^2 \\
-\delta\alpha &= 1.81\sqrt{\left(\frac{0.006}{0.035}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.31\text{ rad/s}^2 \\
-I &= \frac{0.0376}{1.81} = 0.021\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.021\sqrt{\left(\frac{0.0005}{0.0376}\right)^2 + \left(\frac{0.31}{1.81}\right)^2} = 0.004\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.021 - 0.0122 = 0.009\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.004^2 + 0.0027^2} = 0.005\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(5.82 \pm 0.05)^2} = 0.03484 \pm 0.00060\text{ m/s}^2 \\
+\delta a &= 0.03484\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{5.82}\right)^2} = 0.00060\text{ m/s}^2 \\
+g - a &= 9.807 - (0.03484 \pm 0.00060) = 9.7722 \pm 0.0006\text{ m/s}^2 \\
+T &= 0.2(9.7722 \pm 0.0006) = 1.9544 \pm 0.0001\text{ N} \\
+\delta T &= 0.2(0.00060) = 0.0001\text{ N} \\
+\tau &= (1.9544 \pm 0.0001)(0.01925 \pm 0.00025) = 0.0376 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0376\sqrt{\left(\frac{0.0001}{1.9544}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.03484 \pm 0.00060}{0.01925 \pm 0.00025} = 1.810 \pm 0.039\text{ rad/s}^2 \\
+\delta\alpha &= 1.810\sqrt{\left(\frac{0.00060}{0.03484}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.039\text{ rad/s}^2 \\
+I &= \frac{0.0376 \pm 0.0005}{1.810 \pm 0.039} = 0.0208 \pm 0.0005\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0208\sqrt{\left(\frac{0.0005}{0.0376}\right)^2 + \left(\frac{0.039}{1.810}\right)^2} = 0.0005\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0208 \pm 0.0005) - (0.0122 \pm 0.0004) = 0.0086 \pm 0.0006\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0005^2 + 0.0004^2} = 0.0006\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 4 — $R = 0.142 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(6.26)^2} = 0.030\text{ m/s}^2 \\
-\delta a &= 0.030\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{6.26}\right)^2} = 0.005\text{ m/s}^2 \\
-g - a &= 9.807 - 0.030 = 9.777 \pm 0.005\text{ m/s}^2 \\
-T &= 0.2(9.777) = 1.955\text{ N}, \qquad \delta T = 0.2(0.005) = 0.001\text{ N} \\
-\tau &= (1.955)(0.01925) = 0.0376\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0376\sqrt{\left(\frac{0.001}{1.955}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.030}{0.01925} = 1.56\text{ rad/s}^2 \\
-\delta\alpha &= 1.56\sqrt{\left(\frac{0.005}{0.030}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.25\text{ rad/s}^2 \\
-I &= \frac{0.0376}{1.56} = 0.024\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.024\sqrt{\left(\frac{0.0005}{0.0376}\right)^2 + \left(\frac{0.25}{1.56}\right)^2} = 0.004\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.024 - 0.0122 = 0.012\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.004^2 + 0.0027^2} = 0.005\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(6.26 \pm 0.05)^2} = 0.03011 \pm 0.00048\text{ m/s}^2 \\
+\delta a &= 0.03011\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{6.26}\right)^2} = 0.00048\text{ m/s}^2 \\
+g - a &= 9.807 - (0.03011 \pm 0.00048) = 9.7769 \pm 0.0005\text{ m/s}^2 \\
+T &= 0.2(9.7769 \pm 0.0005) = 1.9554 \pm 0.0001\text{ N} \\
+\delta T &= 0.2(0.00048) = 0.0001\text{ N} \\
+\tau &= (1.9554 \pm 0.0001)(0.01925 \pm 0.00025) = 0.0376 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0376\sqrt{\left(\frac{0.0001}{1.9554}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.03011 \pm 0.00048}{0.01925 \pm 0.00025} = 1.564 \pm 0.032\text{ rad/s}^2 \\
+\delta\alpha &= 1.564\sqrt{\left(\frac{0.00048}{0.03011}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.032\text{ rad/s}^2 \\
+I &= \frac{0.0376 \pm 0.0005}{1.564 \pm 0.032} = 0.0241 \pm 0.0006\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0241\sqrt{\left(\frac{0.0005}{0.0376}\right)^2 + \left(\frac{0.032}{1.564}\right)^2} = 0.0006\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0241 \pm 0.0006) - (0.0122 \pm 0.0004) = 0.0119 \pm 0.0007\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0006^2 + 0.0004^2} = 0.0007\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 5 — $R = 0.152 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(6.81)^2} = 0.025\text{ m/s}^2 \\
-\delta a &= 0.025\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{6.81}\right)^2} = 0.004\text{ m/s}^2 \\
-g - a &= 9.807 - 0.025 = 9.782 \pm 0.004\text{ m/s}^2 \\
-T &= 0.2(9.782) = 1.956\text{ N}, \qquad \delta T = 0.2(0.004) = 0.001\text{ N} \\
-\tau &= (1.956)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.001}{1.956}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.025}{0.01925} = 1.32\text{ rad/s}^2 \\
-\delta\alpha &= 1.32\sqrt{\left(\frac{0.004}{0.025}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.19\text{ rad/s}^2 \\
-I &= \frac{0.0377}{1.32} = 0.028\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.028\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.19}{1.32}\right)^2} = 0.004\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.028 - 0.0122 = 0.016\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.004^2 + 0.0027^2} = 0.005\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(6.81 \pm 0.05)^2} = 0.02544 \pm 0.00038\text{ m/s}^2 \\
+\delta a &= 0.02544\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{6.81}\right)^2} = 0.00038\text{ m/s}^2 \\
+g - a &= 9.807 - (0.02544 \pm 0.00038) = 9.7816 \pm 0.0004\text{ m/s}^2 \\
+T &= 0.2(9.7816 \pm 0.0004) = 1.9563 \pm 0.0001\text{ N} \\
+\delta T &= 0.2(0.00038) = 0.0001\text{ N} \\
+\tau &= (1.9563 \pm 0.0001)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0001}{1.9563}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.02544 \pm 0.00038}{0.01925 \pm 0.00025} = 1.322 \pm 0.026\text{ rad/s}^2 \\
+\delta\alpha &= 1.322\sqrt{\left(\frac{0.00038}{0.02544}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.026\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{1.322 \pm 0.026} = 0.0285 \pm 0.0007\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0285\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.026}{1.322}\right)^2} = 0.0007\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0285 \pm 0.0007) - (0.0122 \pm 0.0004) = 0.0163 \pm 0.0008\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0007^2 + 0.0004^2} = 0.0008\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 6 — $R = 0.162 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(6.66)^2} = 0.027\text{ m/s}^2 \\
-\delta a &= 0.027\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{6.66}\right)^2} = 0.004\text{ m/s}^2 \\
-g - a &= 9.807 - 0.027 = 9.780 \pm 0.004\text{ m/s}^2 \\
-T &= 0.2(9.780) = 1.956\text{ N}, \qquad \delta T = 0.2(0.004) = 0.001\text{ N} \\
-\tau &= (1.956)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.001}{1.956}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.027}{0.01925} = 1.38\text{ rad/s}^2 \\
-\delta\alpha &= 1.38\sqrt{\left(\frac{0.004}{0.027}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.21\text{ rad/s}^2 \\
-I &= \frac{0.0377}{1.38} = 0.027\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.027\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.21}{1.38}\right)^2} = 0.004\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.027 - 0.0122 = 0.015\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.004^2 + 0.0027^2} = 0.005\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(6.66 \pm 0.05)^2} = 0.02660 \pm 0.00040\text{ m/s}^2 \\
+\delta a &= 0.02660\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{6.66}\right)^2} = 0.00040\text{ m/s}^2 \\
+g - a &= 9.807 - (0.02660 \pm 0.00040) = 9.7804 \pm 0.0004\text{ m/s}^2 \\
+T &= 0.2(9.7804 \pm 0.0004) = 1.9561 \pm 0.0001\text{ N} \\
+\delta T &= 0.2(0.00040) = 0.0001\text{ N} \\
+\tau &= (1.9561 \pm 0.0001)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0001}{1.9561}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.02660 \pm 0.00040}{0.01925 \pm 0.00025} = 1.382 \pm 0.028\text{ rad/s}^2 \\
+\delta\alpha &= 1.382\sqrt{\left(\frac{0.00040}{0.02660}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.028\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{1.382 \pm 0.028} = 0.0272 \pm 0.0006\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0272\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.028}{1.382}\right)^2} = 0.0006\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0272 \pm 0.0006) - (0.0122 \pm 0.0004) = 0.0150 \pm 0.0007\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0006^2 + 0.0004^2} = 0.0007\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 7 — $R = 0.172 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(6.93)^2} = 0.025\text{ m/s}^2 \\
-\delta a &= 0.025\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{6.93}\right)^2} = 0.004\text{ m/s}^2 \\
-g - a &= 9.807 - 0.025 = 9.782 \pm 0.004\text{ m/s}^2 \\
-T &= 0.2(9.782) = 1.956\text{ N}, \qquad \delta T = 0.2(0.004) = 0.001\text{ N} \\
-\tau &= (1.956)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.001}{1.956}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.025}{0.01925} = 1.28\text{ rad/s}^2 \\
-\delta\alpha &= 1.28\sqrt{\left(\frac{0.004}{0.025}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.18\text{ rad/s}^2 \\
-I &= \frac{0.0377}{1.28} = 0.030\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.030\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.18}{1.28}\right)^2} = 0.004\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.030 - 0.0122 = 0.018\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.004^2 + 0.0027^2} = 0.005\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(6.93 \pm 0.05)^2} = 0.02457 \pm 0.00036\text{ m/s}^2 \\
+\delta a &= 0.02457\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{6.93}\right)^2} = 0.00036\text{ m/s}^2 \\
+g - a &= 9.807 - (0.02457 \pm 0.00036) = 9.7824 \pm 0.0004\text{ m/s}^2 \\
+T &= 0.2(9.7824 \pm 0.0004) = 1.9565 \pm 0.0001\text{ N} \\
+\delta T &= 0.2(0.00036) = 0.0001\text{ N} \\
+\tau &= (1.9565 \pm 0.0001)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0001}{1.9565}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.02457 \pm 0.00036}{0.01925 \pm 0.00025} = 1.276 \pm 0.025\text{ rad/s}^2 \\
+\delta\alpha &= 1.276\sqrt{\left(\frac{0.00036}{0.02457}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.025\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{1.276 \pm 0.025} = 0.0295 \pm 0.0007\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0295\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.025}{1.276}\right)^2} = 0.0007\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0295 \pm 0.0007) - (0.0122 \pm 0.0004) = 0.0173 \pm 0.0008\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0007^2 + 0.0004^2} = 0.0008\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 8 — $R = 0.182 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(7.51)^2} = 0.021\text{ m/s}^2 \\
-\delta a &= 0.021\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{7.51}\right)^2} = 0.003\text{ m/s}^2 \\
-g - a &= 9.807 - 0.021 = 9.786 \pm 0.003\text{ m/s}^2 \\
-T &= 0.2(9.786) = 1.957\text{ N}, \qquad \delta T = 0.2(0.003) = 0.001\text{ N} \\
-\tau &= (1.957)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.001}{1.957}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.021}{0.01925} = 1.09\text{ rad/s}^2 \\
-\delta\alpha &= 1.09\sqrt{\left(\frac{0.003}{0.021}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.15\text{ rad/s}^2 \\
-I &= \frac{0.0377}{1.09} = 0.035\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.035\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.15}{1.09}\right)^2} = 0.005\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.035 - 0.0122 = 0.023\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.005^2 + 0.0027^2} = 0.006\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(7.51 \pm 0.05)^2} = 0.02092 \pm 0.00028\text{ m/s}^2 \\
+\delta a &= 0.02092\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{7.51}\right)^2} = 0.00028\text{ m/s}^2 \\
+g - a &= 9.807 - (0.02092 \pm 0.00028) = 9.7861 \pm 0.0003\text{ m/s}^2 \\
+T &= 0.2(9.7861 \pm 0.0003) = 1.9572 \pm 0.0001\text{ N} \\
+\delta T &= 0.2(0.00028) = 0.0001\text{ N} \\
+\tau &= (1.9572 \pm 0.0001)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0001}{1.9572}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.02092 \pm 0.00028}{0.01925 \pm 0.00025} = 1.087 \pm 0.020\text{ rad/s}^2 \\
+\delta\alpha &= 1.087\sqrt{\left(\frac{0.00028}{0.02092}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.020\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{1.087 \pm 0.020} = 0.0347 \pm 0.0008\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0347\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.020}{1.087}\right)^2} = 0.0008\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0347 \pm 0.0008) - (0.0122 \pm 0.0004) = 0.0225 \pm 0.0009\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0008^2 + 0.0004^2} = 0.0009\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 9 — $R = 0.192 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(7.89)^2} = 0.019\text{ m/s}^2 \\
-\delta a &= 0.019\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{7.89}\right)^2} = 0.002\text{ m/s}^2 \\
-g - a &= 9.807 - 0.019 = 9.788 \pm 0.002\text{ m/s}^2 \\
-T &= 0.2(9.788) = 1.958\text{ N}, \qquad \delta T = 0.2(0.002) = 0.000\text{ N} \\
-\tau &= (1.958)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.958}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.019}{0.01925} = 0.98\text{ rad/s}^2 \\
-\delta\alpha &= 0.98\sqrt{\left(\frac{0.002}{0.019}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.13\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.98} = 0.038\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.038\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.13}{0.98}\right)^2} = 0.005\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.038 - 0.0122 = 0.026\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.005^2 + 0.0027^2} = 0.006\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(7.89 \pm 0.05)^2} = 0.01896 \pm 0.00024\text{ m/s}^2 \\
+\delta a &= 0.01896\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{7.89}\right)^2} = 0.00024\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01896 \pm 0.00024) = 9.7880 \pm 0.0002\text{ m/s}^2 \\
+T &= 0.2(9.7880 \pm 0.0002) = 1.9576 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00024) = 0.0000\text{ N} \\
+\tau &= (1.9576 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9576}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01896 \pm 0.00024}{0.01925 \pm 0.00025} = 0.985 \pm 0.018\text{ rad/s}^2 \\
+\delta\alpha &= 0.985\sqrt{\left(\frac{0.00024}{0.01896}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.018\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.985 \pm 0.018} = 0.0383 \pm 0.0009\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0383\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.018}{0.985}\right)^2} = 0.0009\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0383 \pm 0.0009) - (0.0122 \pm 0.0004) = 0.0261 \pm 0.0010\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0009^2 + 0.0004^2} = 0.0010\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 10 — $R = 0.202 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(8.12)^2} = 0.018\text{ m/s}^2 \\
-\delta a &= 0.018\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{8.12}\right)^2} = 0.002\text{ m/s}^2 \\
-g - a &= 9.807 - 0.018 = 9.789 \pm 0.002\text{ m/s}^2 \\
-T &= 0.2(9.789) = 1.958\text{ N}, \qquad \delta T = 0.2(0.002) = 0.000\text{ N} \\
-\tau &= (1.958)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.958}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.018}{0.01925} = 0.93\text{ rad/s}^2 \\
-\delta\alpha &= 0.93\sqrt{\left(\frac{0.002}{0.018}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.12\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.93} = 0.041\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.041\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.12}{0.93}\right)^2} = 0.005\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.041 - 0.0122 = 0.029\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.005^2 + 0.0027^2} = 0.006\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(8.12 \pm 0.05)^2} = 0.01790 \pm 0.00022\text{ m/s}^2 \\
+\delta a &= 0.01790\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{8.12}\right)^2} = 0.00022\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01790 \pm 0.00022) = 9.7891 \pm 0.0002\text{ m/s}^2 \\
+T &= 0.2(9.7891 \pm 0.0002) = 1.9578 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00022) = 0.0000\text{ N} \\
+\tau &= (1.9578 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9578}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01790 \pm 0.00022}{0.01925 \pm 0.00025} = 0.930 \pm 0.017\text{ rad/s}^2 \\
+\delta\alpha &= 0.930\sqrt{\left(\frac{0.00022}{0.01790}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.017\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.930 \pm 0.017} = 0.0405 \pm 0.0009\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0405\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.017}{0.930}\right)^2} = 0.0009\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0405 \pm 0.0009) - (0.0122 \pm 0.0004) = 0.0283 \pm 0.0010\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0009^2 + 0.0004^2} = 0.0010\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 11 — $R = 0.212 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(8.37)^2} = 0.017\text{ m/s}^2 \\
-\delta a &= 0.017\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{8.37}\right)^2} = 0.002\text{ m/s}^2 \\
-g - a &= 9.807 - 0.017 = 9.790 \pm 0.002\text{ m/s}^2 \\
-T &= 0.2(9.790) = 1.958\text{ N}, \qquad \delta T = 0.2(0.002) = 0.000\text{ N} \\
-\tau &= (1.958)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.958}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.017}{0.01925} = 0.87\text{ rad/s}^2 \\
-\delta\alpha &= 0.87\sqrt{\left(\frac{0.002}{0.017}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.11\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.87} = 0.043\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.043\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.11}{0.87}\right)^2} = 0.005\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.043 - 0.0122 = 0.031\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.005^2 + 0.0027^2} = 0.006\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(8.37 \pm 0.05)^2} = 0.01684 \pm 0.00020\text{ m/s}^2 \\
+\delta a &= 0.01684\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{8.37}\right)^2} = 0.00020\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01684 \pm 0.00020) = 9.7902 \pm 0.0002\text{ m/s}^2 \\
+T &= 0.2(9.7902 \pm 0.0002) = 1.9580 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00020) = 0.0000\text{ N} \\
+\tau &= (1.9580 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9580}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01684 \pm 0.00020}{0.01925 \pm 0.00025} = 0.875 \pm 0.016\text{ rad/s}^2 \\
+\delta\alpha &= 0.875\sqrt{\left(\frac{0.00020}{0.01684}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.016\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.875 \pm 0.016} = 0.0431 \pm 0.0009\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0431\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.016}{0.875}\right)^2} = 0.0009\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0431 \pm 0.0009) - (0.0122 \pm 0.0004) = 0.0309 \pm 0.0010\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0009^2 + 0.0004^2} = 0.0010\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 12 — $R = 0.222 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(8.83)^2} = 0.015\text{ m/s}^2 \\
-\delta a &= 0.015\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{8.83}\right)^2} = 0.002\text{ m/s}^2 \\
-g - a &= 9.807 - 0.015 = 9.792 \pm 0.002\text{ m/s}^2 \\
-T &= 0.2(9.792) = 1.958\text{ N}, \qquad \delta T = 0.2(0.002) = 0.000\text{ N} \\
-\tau &= (1.958)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.958}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.015}{0.01925} = 0.79\text{ rad/s}^2 \\
-\delta\alpha &= 0.79\sqrt{\left(\frac{0.002}{0.015}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.09\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.79} = 0.048\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.048\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.09}{0.79}\right)^2} = 0.006\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.048 - 0.0122 = 0.036\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.006^2 + 0.0027^2} = 0.007\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(8.83 \pm 0.05)^2} = 0.01513 \pm 0.00017\text{ m/s}^2 \\
+\delta a &= 0.01513\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{8.83}\right)^2} = 0.00017\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01513 \pm 0.00017) = 9.7919 \pm 0.0002\text{ m/s}^2 \\
+T &= 0.2(9.7919 \pm 0.0002) = 1.9584 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00017) = 0.0000\text{ N} \\
+\tau &= (1.9584 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9584}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01513 \pm 0.00017}{0.01925 \pm 0.00025} = 0.786 \pm 0.014\text{ rad/s}^2 \\
+\delta\alpha &= 0.786\sqrt{\left(\frac{0.00017}{0.01513}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.014\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.786 \pm 0.014} = 0.0480 \pm 0.0010\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0480\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.014}{0.786}\right)^2} = 0.0010\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0480 \pm 0.0010) - (0.0122 \pm 0.0004) = 0.0358 \pm 0.0011\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0010^2 + 0.0004^2} = 0.0011\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 13 — $R = 0.232 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(9.06)^2} = 0.014\text{ m/s}^2 \\
-\delta a &= 0.014\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{9.06}\right)^2} = 0.002\text{ m/s}^2 \\
-g - a &= 9.807 - 0.014 = 9.793 \pm 0.002\text{ m/s}^2 \\
-T &= 0.2(9.793) = 1.959\text{ N}, \qquad \delta T = 0.2(0.002) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.014}{0.01925} = 0.75\text{ rad/s}^2 \\
-\delta\alpha &= 0.75\sqrt{\left(\frac{0.002}{0.014}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.08\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.75} = 0.050\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.050\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.08}{0.75}\right)^2} = 0.006\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.050 - 0.0122 = 0.038\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.006^2 + 0.0027^2} = 0.007\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(9.06 \pm 0.05)^2} = 0.01438 \pm 0.00016\text{ m/s}^2 \\
+\delta a &= 0.01438\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{9.06}\right)^2} = 0.00016\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01438 \pm 0.00016) = 9.7926 \pm 0.0002\text{ m/s}^2 \\
+T &= 0.2(9.7926 \pm 0.0002) = 1.9585 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00016) = 0.0000\text{ N} \\
+\tau &= (1.9585 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9585}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01438 \pm 0.00016}{0.01925 \pm 0.00025} = 0.747 \pm 0.013\text{ rad/s}^2 \\
+\delta\alpha &= 0.747\sqrt{\left(\frac{0.00016}{0.01438}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.013\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.747 \pm 0.013} = 0.0505 \pm 0.0011\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0505\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.013}{0.747}\right)^2} = 0.0011\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0505 \pm 0.0011) - (0.0122 \pm 0.0004) = 0.0383 \pm 0.0012\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0011^2 + 0.0004^2} = 0.0012\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 14 — $R = 0.242 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(9.36)^2} = 0.013\text{ m/s}^2 \\
-\delta a &= 0.013\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{9.36}\right)^2} = 0.001\text{ m/s}^2 \\
-g - a &= 9.807 - 0.013 = 9.794 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.794) = 1.959\text{ N}, \qquad \delta T = 0.2(0.001) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.013}{0.01925} = 0.70\text{ rad/s}^2 \\
-\delta\alpha &= 0.70\sqrt{\left(\frac{0.001}{0.013}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.08\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.70} = 0.054\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.054\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.08}{0.70}\right)^2} = 0.006\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.054 - 0.0122 = 0.042\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.006^2 + 0.0027^2} = 0.007\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(9.36 \pm 0.05)^2} = 0.01347 \pm 0.00015\text{ m/s}^2 \\
+\delta a &= 0.01347\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{9.36}\right)^2} = 0.00015\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01347 \pm 0.00015) = 9.7935 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7935 \pm 0.0001) = 1.9587 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00015) = 0.0000\text{ N} \\
+\tau &= (1.9587 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9587}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01347 \pm 0.00015}{0.01925 \pm 0.00025} = 0.700 \pm 0.012\text{ rad/s}^2 \\
+\delta\alpha &= 0.700\sqrt{\left(\frac{0.00015}{0.01347}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.012\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.700 \pm 0.012} = 0.0539 \pm 0.0011\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0539\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.012}{0.700}\right)^2} = 0.0011\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0539 \pm 0.0011) - (0.0122 \pm 0.0004) = 0.0417 \pm 0.0012\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0011^2 + 0.0004^2} = 0.0012\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 15 — $R = 0.252 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(9.47)^2} = 0.013\text{ m/s}^2 \\
-\delta a &= 0.013\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{9.47}\right)^2} = 0.001\text{ m/s}^2 \\
-g - a &= 9.807 - 0.013 = 9.794 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.794) = 1.959\text{ N}, \qquad \delta T = 0.2(0.001) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.013}{0.01925} = 0.68\text{ rad/s}^2 \\
-\delta\alpha &= 0.68\sqrt{\left(\frac{0.001}{0.013}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.07\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.68} = 0.055\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.055\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.07}{0.68}\right)^2} = 0.006\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.055 - 0.0122 = 0.043\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.006^2 + 0.0027^2} = 0.007\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(9.47 \pm 0.05)^2} = 0.01316 \pm 0.00014\text{ m/s}^2 \\
+\delta a &= 0.01316\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{9.47}\right)^2} = 0.00014\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01316 \pm 0.00014) = 9.7938 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7938 \pm 0.0001) = 1.9588 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00014) = 0.0000\text{ N} \\
+\tau &= (1.9588 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9588}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01316 \pm 0.00014}{0.01925 \pm 0.00025} = 0.684 \pm 0.011\text{ rad/s}^2 \\
+\delta\alpha &= 0.684\sqrt{\left(\frac{0.00014}{0.01316}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.011\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.684 \pm 0.011} = 0.0552 \pm 0.0012\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0552\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.011}{0.684}\right)^2} = 0.0012\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0552 \pm 0.0012) - (0.0122 \pm 0.0004) = 0.0430 \pm 0.0013\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0012^2 + 0.0004^2} = 0.0013\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 16 — $R = 0.262 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(9.91)^2} = 0.012\text{ m/s}^2 \\
-\delta a &= 0.012\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{9.91}\right)^2} = 0.001\text{ m/s}^2 \\
-g - a &= 9.807 - 0.012 = 9.795 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.795) = 1.959\text{ N}, \qquad \delta T = 0.2(0.001) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.012}{0.01925} = 0.62\text{ rad/s}^2 \\
-\delta\alpha &= 0.62\sqrt{\left(\frac{0.001}{0.012}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.06\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.62} = 0.060\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.060\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.06}{0.62}\right)^2} = 0.006\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.060 - 0.0122 = 0.048\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.006^2 + 0.0027^2} = 0.007\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(9.91 \pm 0.05)^2} = 0.01202 \pm 0.00012\text{ m/s}^2 \\
+\delta a &= 0.01202\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{9.91}\right)^2} = 0.00012\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01202 \pm 0.00012) = 9.7950 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7950 \pm 0.0001) = 1.9590 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00012) = 0.0000\text{ N} \\
+\tau &= (1.9590 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9590}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01202 \pm 0.00012}{0.01925 \pm 0.00025} = 0.624 \pm 0.010\text{ rad/s}^2 \\
+\delta\alpha &= 0.624\sqrt{\left(\frac{0.00012}{0.01202}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.010\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.624 \pm 0.010} = 0.0604 \pm 0.0013\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0604\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.010}{0.624}\right)^2} = 0.0013\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0604 \pm 0.0013) - (0.0122 \pm 0.0004) = 0.0482 \pm 0.0014\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0013^2 + 0.0004^2} = 0.0014\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 17 — $R = 0.272 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(10.40)^2} = 0.01091\text{ m/s}^2 \\
-\delta a &= 0.01091\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{10.40}\right)^2} = 0.00105\text{ m/s}^2 \\
-g - a &= 9.807 - 0.01091 = 9.796 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.796) = 1.959\text{ N}, \qquad \delta T = 0.2(0.00105) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.01091}{0.01925} = 0.567\text{ rad/s}^2 \\
-\delta\alpha &= 0.567\sqrt{\left(\frac{0.00105}{0.01091}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.055\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.567} = 0.0665\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.0665\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.055}{0.567}\right)^2} = 0.0065\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.0665 - 0.0122 = 0.0543\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.0065^2 + 0.0027^2} = 0.0070\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(10.40 \pm 0.05)^2} = 0.01091 \pm 0.00011\text{ m/s}^2 \\
+\delta a &= 0.01091\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{10.40}\right)^2} = 0.00011\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01091 \pm 0.00011) = 9.7961 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7961 \pm 0.0001) = 1.9592 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00011) = 0.0000\text{ N} \\
+\tau &= (1.9592 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9592}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01091 \pm 0.00011}{0.01925 \pm 0.00025} = 0.567 \pm 0.009\text{ rad/s}^2 \\
+\delta\alpha &= 0.567\sqrt{\left(\frac{0.00011}{0.01091}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.009\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.567 \pm 0.009} = 0.0665 \pm 0.0014\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0665\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.009}{0.567}\right)^2} = 0.0014\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0665 \pm 0.0014) - (0.0122 \pm 0.0004) = 0.0543 \pm 0.0015\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0014^2 + 0.0004^2} = 0.0015\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 18 — $R = 0.282 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(10.76)^2} = 0.01019\text{ m/s}^2 \\
-\delta a &= 0.01019\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{10.76}\right)^2} = 0.00095\text{ m/s}^2 \\
-g - a &= 9.807 - 0.01019 = 9.797 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.797) = 1.959\text{ N}, \qquad \delta T = 0.2(0.00095) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.01019}{0.01925} = 0.529\text{ rad/s}^2 \\
-\delta\alpha &= 0.529\sqrt{\left(\frac{0.00095}{0.01019}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.050\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.529} = 0.0712\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.0712\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.050}{0.529}\right)^2} = 0.0067\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.0712 - 0.0122 = 0.0590\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.0067^2 + 0.0027^2} = 0.0072\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(10.76 \pm 0.05)^2} = 0.01019 \pm 0.00010\text{ m/s}^2 \\
+\delta a &= 0.01019\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{10.76}\right)^2} = 0.00010\text{ m/s}^2 \\
+g - a &= 9.807 - (0.01019 \pm 0.00010) = 9.7968 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7968 \pm 0.0001) = 1.9594 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00010) = 0.0000\text{ N} \\
+\tau &= (1.9594 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9594}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.01019 \pm 0.00010}{0.01925 \pm 0.00025} = 0.529 \pm 0.009\text{ rad/s}^2 \\
+\delta\alpha &= 0.529\sqrt{\left(\frac{0.00010}{0.01019}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.009\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.529 \pm 0.009} = 0.0712 \pm 0.0015\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0712\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.009}{0.529}\right)^2} = 0.0015\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0712 \pm 0.0015) - (0.0122 \pm 0.0004) = 0.0590 \pm 0.0016\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0015^2 + 0.0004^2} = 0.0016\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 19 — $R = 0.292 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(11.12)^2} = 0.00954\text{ m/s}^2 \\
-\delta a &= 0.00954\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{11.12}\right)^2} = 0.00086\text{ m/s}^2 \\
-g - a &= 9.807 - 0.00954 = 9.797 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.797) = 1.959\text{ N}, \qquad \delta T = 0.2(0.00086) = 0.000\text{ N} \\
-\tau &= (1.959)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.959}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.00954}{0.01925} = 0.496\text{ rad/s}^2 \\
-\delta\alpha &= 0.496\sqrt{\left(\frac{0.00086}{0.00954}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.045\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.496} = 0.0761\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.0761\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.045}{0.496}\right)^2} = 0.0070\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.0761 - 0.0122 = 0.0639\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.0070^2 + 0.0027^2} = 0.0075\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(11.12 \pm 0.05)^2} = 0.00954 \pm 0.00009\text{ m/s}^2 \\
+\delta a &= 0.00954\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{11.12}\right)^2} = 0.00009\text{ m/s}^2 \\
+g - a &= 9.807 - (0.00954 \pm 0.00009) = 9.7975 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7975 \pm 0.0001) = 1.9595 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00009) = 0.0000\text{ N} \\
+\tau &= (1.9595 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9595}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.00954 \pm 0.00009}{0.01925 \pm 0.00025} = 0.496 \pm 0.008\text{ rad/s}^2 \\
+\delta\alpha &= 0.496\sqrt{\left(\frac{0.00009}{0.00954}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.008\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.496 \pm 0.008} = 0.0761 \pm 0.0016\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0761\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.008}{0.496}\right)^2} = 0.0016\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0761 \pm 0.0016) - (0.0122 \pm 0.0004) = 0.0639 \pm 0.0016\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0016^2 + 0.0004^2} = 0.0016\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 20 — $R = 0.302 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(12.24)^2} = 0.00788\text{ m/s}^2 \\
-\delta a &= 0.00788\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{12.24}\right)^2} = 0.00064\text{ m/s}^2 \\
-g - a &= 9.807 - 0.00788 = 9.799 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.799) = 1.960\text{ N}, \qquad \delta T = 0.2(0.00064) = 0.000\text{ N} \\
-\tau &= (1.960)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.960}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.00788}{0.01925} = 0.409\text{ rad/s}^2 \\
-\delta\alpha &= 0.409\sqrt{\left(\frac{0.00064}{0.00788}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.034\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.409} = 0.0922\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.0922\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.034}{0.409}\right)^2} = 0.0077\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.0922 - 0.0122 = 0.0800\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.0077^2 + 0.0027^2} = 0.0082\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(12.24 \pm 0.05)^2} = 0.00788 \pm 0.00007\text{ m/s}^2 \\
+\delta a &= 0.00788\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{12.24}\right)^2} = 0.00007\text{ m/s}^2 \\
+g - a &= 9.807 - (0.00788 \pm 0.00007) = 9.7991 \pm 0.0001\text{ m/s}^2 \\
+T &= 0.2(9.7991 \pm 0.0001) = 1.9598 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00007) = 0.0000\text{ N} \\
+\tau &= (1.9598 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9598}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.00788 \pm 0.00007}{0.01925 \pm 0.00025} = 0.409 \pm 0.006\text{ rad/s}^2 \\
+\delta\alpha &= 0.409\sqrt{\left(\frac{0.00007}{0.00788}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.006\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.409 \pm 0.006} = 0.0922 \pm 0.0019\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.0922\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.006}{0.409}\right)^2} = 0.0019\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.0922 \pm 0.0019) - (0.0122 \pm 0.0004) = 0.0800 \pm 0.0019\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0019^2 + 0.0004^2} = 0.0019\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \textbf{Trial 21 — $R = 0.312 \pm 0.001\text{ m}$:}
 \begin{align*}
-a &= \frac{2(0.590)}{(13.64)^2} = 0.00634\text{ m/s}^2 \\
-\delta a &= 0.00634\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.5)}{13.64}\right)^2} = 0.00047\text{ m/s}^2 \\
-g - a &= 9.807 - 0.00634 = 9.801 \pm 0.001\text{ m/s}^2 \\
-T &= 0.2(9.801) = 1.960\text{ N}, \qquad \delta T = 0.2(0.00047) = 0.000\text{ N} \\
-\tau &= (1.960)(0.01925) = 0.0377\text{ N}\cdot\text{m} \\
-\delta\tau &= 0.0377\sqrt{\left(\frac{0.000}{1.960}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
-\alpha &= \frac{0.00634}{0.01925} = 0.329\text{ rad/s}^2 \\
-\delta\alpha &= 0.329\sqrt{\left(\frac{0.00047}{0.00634}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.025\text{ rad/s}^2 \\
-I &= \frac{0.0377}{0.329} = 0.1145\text{ kg}\cdot\text{m}^2 \\
-\delta I &= 0.1145\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.025}{0.329}\right)^2} = 0.0087\text{ kg}\cdot\text{m}^2 \\
-I_{\text{masses}} &= 0.1145 - 0.0122 = 0.1023\text{ kg}\cdot\text{m}^2 \\
-\delta I_{\text{masses}} &= \sqrt{0.0087^2 + 0.0027^2} = 0.0091\text{ kg}\cdot\text{m}^2
+a &= \frac{2(0.590 \pm 0.001)}{(13.64 \pm 0.05)^2} = 0.00634 \pm 0.00005\text{ m/s}^2 \\
+\delta a &= 0.00634\sqrt{\left(\frac{0.001}{0.590}\right)^2 + \left(\frac{2(0.05)}{13.64}\right)^2} = 0.00005\text{ m/s}^2 \\
+g - a &= 9.807 - (0.00634 \pm 0.00005) = 9.8007 \pm 0.0000\text{ m/s}^2 \\
+T &= 0.2(9.8007 \pm 0.0000) = 1.9601 \pm 0.0000\text{ N} \\
+\delta T &= 0.2(0.00005) = 0.0000\text{ N} \\
+\tau &= (1.9601 \pm 0.0000)(0.01925 \pm 0.00025) = 0.0377 \pm 0.0005\text{ N}\cdot\text{m} \\
+\delta\tau &= 0.0377\sqrt{\left(\frac{0.0000}{1.9601}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.0005\text{ N}\cdot\text{m} \\
+\alpha &= \frac{0.00634 \pm 0.00005}{0.01925 \pm 0.00025} = 0.329 \pm 0.005\text{ rad/s}^2 \\
+\delta\alpha &= 0.329\sqrt{\left(\frac{0.00005}{0.00634}\right)^2 + \left(\frac{0.00025}{0.01925}\right)^2} = 0.005\text{ rad/s}^2 \\
+I &= \frac{0.0377 \pm 0.0005}{0.329 \pm 0.005} = 0.1145 \pm 0.0023\text{ kg}\cdot\text{m}^2 \\
+\delta I &= 0.1145\sqrt{\left(\frac{0.0005}{0.0377}\right)^2 + \left(\frac{0.005}{0.329}\right)^2} = 0.0023\text{ kg}\cdot\text{m}^2 \\
+I_{\text{masses}} &= (0.1145 \pm 0.0023) - (0.0122 \pm 0.0004) = 0.1023 \pm 0.0023\text{ kg}\cdot\text{m}^2 \\
+\delta I_{\text{masses}} &= \sqrt{0.0023^2 + 0.0004^2} = 0.0023\text{ kg}\cdot\text{m}^2
 \end{align*}
 
 \begin{table}[h!]
@@ -426,141 +449,164 @@ I_{\text{masses}} &= 0.1145 - 0.0122 = 0.1023\text{ kg}\cdot\text{m}^2 \\
 \toprule
 \textbf{Trial} & \textbf{$R$ (m)} & \textbf{$I_{\text{total}}$ ($\text{kg}\cdot\text{m}^2$)} & \textbf{$I_{\text{masses}}$ ($\text{kg}\cdot\text{m}^2$)} \\
 \midrule
-2 & $0.122 \pm 0.001$ & $0.018 \pm 0.003$ & $0.006 \pm 0.004$ \\
-3 & $0.132 \pm 0.001$ & $0.021 \pm 0.004$ & $0.009 \pm 0.005$ \\
-4 & $0.142 \pm 0.001$ & $0.024 \pm 0.004$ & $0.012 \pm 0.005$ \\
-5 & $0.152 \pm 0.001$ & $0.028 \pm 0.004$ & $0.016 \pm 0.005$ \\
-6 & $0.162 \pm 0.001$ & $0.027 \pm 0.004$ & $0.015 \pm 0.005$ \\
-7 & $0.172 \pm 0.001$ & $0.030 \pm 0.004$ & $0.018 \pm 0.005$ \\
-8 & $0.182 \pm 0.001$ & $0.035 \pm 0.005$ & $0.023 \pm 0.006$ \\
-9 & $0.192 \pm 0.001$ & $0.038 \pm 0.005$ & $0.026 \pm 0.006$ \\
-10 & $0.202 \pm 0.001$ & $0.041 \pm 0.005$ & $0.029 \pm 0.006$ \\
-11 & $0.212 \pm 0.001$ & $0.043 \pm 0.005$ & $0.031 \pm 0.006$ \\
-12 & $0.222 \pm 0.001$ & $0.048 \pm 0.006$ & $0.036 \pm 0.007$ \\
-13 & $0.232 \pm 0.001$ & $0.050 \pm 0.006$ & $0.038 \pm 0.007$ \\
-14 & $0.242 \pm 0.001$ & $0.054 \pm 0.006$ & $0.042 \pm 0.007$ \\
-15 & $0.252 \pm 0.001$ & $0.055 \pm 0.006$ & $0.043 \pm 0.007$ \\
-16 & $0.262 \pm 0.001$ & $0.060 \pm 0.006$ & $0.048 \pm 0.007$ \\
-17 & $0.272 \pm 0.001$ & $0.0665 \pm 0.0065$ & $0.0543 \pm 0.0070$ \\
-18 & $0.282 \pm 0.001$ & $0.0712 \pm 0.0067$ & $0.0590 \pm 0.0072$ \\
-19 & $0.292 \pm 0.001$ & $0.0761 \pm 0.0070$ & $0.0639 \pm 0.0075$ \\
-20 & $0.302 \pm 0.001$ & $0.0922 \pm 0.0077$ & $0.0800 \pm 0.0082$ \\
-21 & $0.312 \pm 0.001$ & $0.1145 \pm 0.0087$ & $0.1023 \pm 0.0091$ \\
+2 & $0.122 \pm 0.001$ & $0.0178 \pm 0.0005$ & $0.0056 \pm 0.0006$ \\
+3 & $0.132 \pm 0.001$ & $0.0208 \pm 0.0005$ & $0.0086 \pm 0.0006$ \\
+4 & $0.142 \pm 0.001$ & $0.0241 \pm 0.0006$ & $0.0119 \pm 0.0007$ \\
+5 & $0.152 \pm 0.001$ & $0.0285 \pm 0.0007$ & $0.0163 \pm 0.0008$ \\
+6 & $0.162 \pm 0.001$ & $0.0272 \pm 0.0006$ & $0.0150 \pm 0.0007$ \\
+7 & $0.172 \pm 0.001$ & $0.0295 \pm 0.0007$ & $0.0173 \pm 0.0008$ \\
+8 & $0.182 \pm 0.001$ & $0.0347 \pm 0.0008$ & $0.0225 \pm 0.0009$ \\
+9 & $0.192 \pm 0.001$ & $0.0383 \pm 0.0009$ & $0.0261 \pm 0.0010$ \\
+10 & $0.202 \pm 0.001$ & $0.0405 \pm 0.0009$ & $0.0283 \pm 0.0010$ \\
+11 & $0.212 \pm 0.001$ & $0.0431 \pm 0.0009$ & $0.0309 \pm 0.0010$ \\
+12 & $0.222 \pm 0.001$ & $0.0480 \pm 0.0010$ & $0.0358 \pm 0.0011$ \\
+13 & $0.232 \pm 0.001$ & $0.0505 \pm 0.0011$ & $0.0383 \pm 0.0012$ \\
+14 & $0.242 \pm 0.001$ & $0.0539 \pm 0.0011$ & $0.0417 \pm 0.0012$ \\
+15 & $0.252 \pm 0.001$ & $0.0552 \pm 0.0012$ & $0.0430 \pm 0.0013$ \\
+16 & $0.262 \pm 0.001$ & $0.0604 \pm 0.0013$ & $0.0482 \pm 0.0014$ \\
+17 & $0.272 \pm 0.001$ & $0.0665 \pm 0.0014$ & $0.0543 \pm 0.0015$ \\
+18 & $0.282 \pm 0.001$ & $0.0712 \pm 0.0015$ & $0.0590 \pm 0.0016$ \\
+19 & $0.292 \pm 0.001$ & $0.0761 \pm 0.0016$ & $0.0639 \pm 0.0016$ \\
+20 & $0.302 \pm 0.001$ & $0.0922 \pm 0.0019$ & $0.0800 \pm 0.0019$ \\
+21 & $0.312 \pm 0.001$ & $0.1145 \pm 0.0023$ & $0.1023 \pm 0.0023$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection*{Linearization}
-The graph of $I_{\text{masses}}$ vs.\ $R$ is not linear. It is modeled as a power function $I = kR^j$, which is linearized by taking the natural log of both sides:
-\[
-\ln(I) = j\ln(R) + \ln(k)
-\]
-A graph of $\ln(I)$ vs.\ $\ln(R)$ is linear with slope $j$ and y-intercept $\ln(k)$.
-\[
-\delta(\ln R) = \frac{\delta R}{R}, \qquad \delta(\ln I) = \frac{\delta I}{I}
-\]
 
-\begin{flushleft}
-\small
-$\ln(0.122) = -2.104, \quad \delta = \frac{0.001}{0.122} = 0.008 \qquad\qquad \ln(0.006) = -5.12, \quad \delta = \frac{0.004}{0.006} = 0.67$ \\[4pt]
-$\ln(0.132) = -2.025, \quad \delta = \frac{0.001}{0.132} = 0.008 \qquad\qquad \ln(0.009) = -4.71, \quad \delta = \frac{0.005}{0.009} = 0.56$ \\[4pt]
-$\ln(0.142) = -1.952, \quad \delta = \frac{0.001}{0.142} = 0.007 \qquad\qquad \ln(0.012) = -4.42, \quad \delta = \frac{0.005}{0.012} = 0.42$ \\[4pt]
-$\ln(0.152) = -1.884, \quad \delta = \frac{0.001}{0.152} = 0.007 \qquad\qquad \ln(0.016) = -4.14, \quad \delta = \frac{0.005}{0.016} = 0.31$ \\[4pt]
-$\ln(0.162) = -1.820, \quad \delta = \frac{0.001}{0.162} = 0.006 \qquad\qquad \ln(0.015) = -4.20, \quad \delta = \frac{0.005}{0.015} = 0.33$ \\[4pt]
-$\ln(0.172) = -1.760, \quad \delta = \frac{0.001}{0.172} = 0.006 \qquad\qquad \ln(0.018) = -4.02, \quad \delta = \frac{0.005}{0.018} = 0.28$ \\[4pt]
-$\ln(0.182) = -1.704, \quad \delta = \frac{0.001}{0.182} = 0.005 \qquad\qquad \ln(0.023) = -3.77, \quad \delta = \frac{0.006}{0.023} = 0.26$ \\[4pt]
-$\ln(0.192) = -1.650, \quad \delta = \frac{0.001}{0.192} = 0.005 \qquad\qquad \ln(0.026) = -3.65, \quad \delta = \frac{0.006}{0.026} = 0.23$ \\[4pt]
-$\ln(0.202) = -1.599, \quad \delta = \frac{0.001}{0.202} = 0.005 \qquad\qquad \ln(0.029) = -3.54, \quad \delta = \frac{0.006}{0.029} = 0.21$ \\[4pt]
-$\ln(0.212) = -1.551, \quad \delta = \frac{0.001}{0.212} = 0.005 \qquad\qquad \ln(0.031) = -3.47, \quad \delta = \frac{0.006}{0.031} = 0.19$ \\[4pt]
-$\ln(0.222) = -1.505, \quad \delta = \frac{0.001}{0.222} = 0.005 \qquad\qquad \ln(0.036) = -3.32, \quad \delta = \frac{0.007}{0.036} = 0.19$ \\[4pt]
-$\ln(0.232) = -1.461, \quad \delta = \frac{0.001}{0.232} = 0.004 \qquad\qquad \ln(0.038) = -3.27, \quad \delta = \frac{0.007}{0.038} = 0.18$ \\[4pt]
-$\ln(0.242) = -1.419, \quad \delta = \frac{0.001}{0.242} = 0.004 \qquad\qquad \ln(0.042) = -3.17, \quad \delta = \frac{0.007}{0.042} = 0.17$ \\[4pt]
-$\ln(0.252) = -1.378, \quad \delta = \frac{0.001}{0.252} = 0.004 \qquad\qquad \ln(0.043) = -3.15, \quad \delta = \frac{0.007}{0.043} = 0.16$ \\[4pt]
-$\ln(0.262) = -1.339, \quad \delta = \frac{0.001}{0.262} = 0.004 \qquad\qquad \ln(0.048) = -3.04, \quad \delta = \frac{0.007}{0.048} = 0.15$ \\[4pt]
-$\ln(0.272) = -1.302, \quad \delta = \frac{0.001}{0.272} = 0.004 \qquad\qquad \ln(0.0543) = -2.91, \quad \delta = \frac{0.0070}{0.0543} = 0.13$ \\[4pt]
-$\ln(0.282) = -1.266, \quad \delta = \frac{0.001}{0.282} = 0.004 \qquad\qquad \ln(0.0590) = -2.83, \quad \delta = \frac{0.0072}{0.0590} = 0.12$ \\[4pt]
-$\ln(0.292) = -1.231, \quad \delta = \frac{0.001}{0.292} = 0.003 \qquad\qquad \ln(0.0639) = -2.75, \quad \delta = \frac{0.0075}{0.0639} = 0.12$ \\[4pt]
-$\ln(0.302) = -1.197, \quad \delta = \frac{0.001}{0.302} = 0.003 \qquad\qquad \ln(0.0800) = -2.53, \quad \delta = \frac{0.0082}{0.0800} = 0.10$ \\[4pt]
-$\ln(0.312) = -1.165, \quad \delta = \frac{0.001}{0.312} = 0.003 \qquad\qquad \ln(0.1023) = -2.28, \quad \delta = \frac{0.0091}{0.1023} = 0.09$
-\end{flushleft}
 
-\begin{table}[h!]
+% Graph 1: Moment of Inertia vs. Radius
+\begin{figure}[htbp]
 \centering
-\small
-\caption{Linearized Data}
-\begin{tabular}{ccc}
-\toprule
-\textbf{Trial} & \textbf{$\ln(R)$} & \textbf{$\ln(I)$} \\
-\midrule
-2 & $-2.104 \pm 0.008$ & $-5.12 \pm 0.67$ \\
-3 & $-2.025 \pm 0.008$ & $-4.71 \pm 0.56$ \\
-4 & $-1.952 \pm 0.007$ & $-4.42 \pm 0.42$ \\
-5 & $-1.884 \pm 0.007$ & $-4.14 \pm 0.31$ \\
-6 & $-1.820 \pm 0.006$ & $-4.20 \pm 0.33$ \\
-7 & $-1.760 \pm 0.006$ & $-4.02 \pm 0.28$ \\
-8 & $-1.704 \pm 0.005$ & $-3.77 \pm 0.26$ \\
-9 & $-1.650 \pm 0.005$ & $-3.65 \pm 0.23$ \\
-10 & $-1.599 \pm 0.005$ & $-3.54 \pm 0.21$ \\
-11 & $-1.551 \pm 0.005$ & $-3.47 \pm 0.19$ \\
-12 & $-1.505 \pm 0.005$ & $-3.32 \pm 0.19$ \\
-13 & $-1.461 \pm 0.004$ & $-3.27 \pm 0.18$ \\
-14 & $-1.419 \pm 0.004$ & $-3.17 \pm 0.17$ \\
-15 & $-1.378 \pm 0.004$ & $-3.15 \pm 0.16$ \\
-16 & $-1.339 \pm 0.004$ & $-3.04 \pm 0.15$ \\
-17 & $-1.302 \pm 0.004$ & $-2.91 \pm 0.13$ \\
-18 & $-1.266 \pm 0.004$ & $-2.83 \pm 0.12$ \\
-19 & $-1.231 \pm 0.003$ & $-2.75 \pm 0.12$ \\
-20 & $-1.197 \pm 0.003$ & $-2.53 \pm 0.10$ \\
-21 & $-1.165 \pm 0.003$ & $-2.28 \pm 0.09$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{tikzpicture}
+\begin{axis}[
+    title={Moment of Inertia vs. Radius},
+    xlabel={Radial Distance, $R$ (m)},
+    ylabel={Moment of Inertia, $I_{\text{masses}}$ (kg$\cdot$m$^2$)},
+    width=0.85\textwidth,
+    height=0.45\textwidth,
+    grid=major,
+    xmin=0.11, xmax=0.32,
+    ymin=0, ymax=0.12,
+    legend pos=north west,
+]
 
-% Uncomment and insert your graph filenames when ready:
-% \begin{figure}[h!]
-%     \centering
-%     \includegraphics[width=0.75\textwidth]{raw_graph.png}
-%     \caption{Moment of Inertia of Adjustable Masses ($I_{\text{masses}}$) vs.\ Radial Distance ($R$).}
-% \end{figure}
-%
-% \begin{figure}[h!]
-%     \centering
-%     \includegraphics[width=0.75\textwidth]{linearized_graph.png}
-%     \caption{Linearized Graph: $\ln(I)$ vs.\ $\ln(R)$.}
-% \end{figure}
+\addplot+[
+    only marks,
+    mark=*,
+    error bars/.cd,
+    x dir=both,
+    x explicit,
+    y dir=both,
+    y explicit,
+]
+table[
+    x=R,
+    y=I,
+    x error=Rerr,
+    y error=Ierr
+] {
+R       Rerr    I       Ierr
+0.122   0.001   0.0056  0.0006
+0.132   0.001   0.0086  0.0006
+0.142   0.001   0.0119  0.0007
+0.152   0.001   0.0163  0.0008
+0.162   0.001   0.0150  0.0007
+0.172   0.001   0.0173  0.0008
+0.182   0.001   0.0225  0.0009
+0.192   0.001   0.0261  0.0010
+0.202   0.001   0.0283  0.0010
+0.212   0.001   0.0309  0.0010
+0.222   0.001   0.0358  0.0011
+0.232   0.001   0.0383  0.0012
+0.242   0.001   0.0417  0.0012
+0.252   0.001   0.0430  0.0013
+0.262   0.001   0.0482  0.0014
+0.272   0.001   0.0543  0.0015
+0.282   0.001   0.0590  0.0016
+0.292   0.001   0.0639  0.0016
+0.302   0.001   0.0800  0.0019
+0.312   0.001   0.1023  0.0023
+};
 
-\textbf{Best-Fit Line (through $(-2.025, -4.71)$ and $(-1.165, -2.28)$):}
-\begin{align*}
-\Delta\ln(I) &= -2.28 - (-4.71) = 2.43 \\
-\Delta\ln(R) &= -1.165 - (-2.025) = 0.860 \\
-j &= \frac{2.43}{0.860} = 2.83 \\
-\ln(k) &= -4.71 - (2.83)(-2.025) = -4.71 + 5.72 = 1.01 \\
-\ln(I) &= 2.83\ln(R) + 1.01
-\end{align*}
+% Quadratic best-fit curve
+\addplot[domain=0.122:0.312, samples=100, thick]
+    {1.99111*x^2 - 0.46166*x + 0.03725};
 
-\textbf{Maximum Slope Line (through $(-2.025, -5.27)$ and $(-1.165, -2.19)$):}
-\begin{align*}
--4.71 - 0.56 &= -5.27, \qquad -2.28 + 0.09 = -2.19 \\
-j_{\max} &= \frac{-2.19 - (-5.27)}{0.860} = \frac{3.08}{0.860} = 3.58 \\
-\ln(k)_{\max} &= -5.27 - (3.58)(-2.025) = -5.27 + 7.25 = 1.98
-\end{align*}
 
-\textbf{Minimum Slope Line (through $(-2.025, -4.15)$ and $(-1.165, -2.37)$):}
-\begin{align*}
--4.71 + 0.56 &= -4.15, \qquad -2.28 - 0.09 = -2.37 \\
-j_{\min} &= \frac{-2.37 - (-4.15)}{0.860} = \frac{1.78}{0.860} = 2.07 \\
-\ln(k)_{\min} &= -4.15 - (2.07)(-2.025) = -4.15 + 4.19 = 0.04
-\end{align*}
+\end{axis}
+\end{tikzpicture}
+\caption{Moment of inertia of the adjustable masses as a function of their radial distance from the axis of rotation.}
+\end{figure}
 
-\textbf{Uncertainties \& Final Relationship:}
-\begin{align*}
-\delta j &= \frac{j_{\max} - j_{\min}}{2} = \frac{3.58 - 2.07}{2} = 0.76 \implies j = 2.8 \pm 0.8 \\
-\delta\ln(k) &= \frac{|\ln(k)_{\max} - \ln(k)_{\min}|}{2} = \frac{|1.98 - 0.04|}{2} = 0.97 \implies \ln(k) = 1.0 \pm 1.0 \\
-k &= e^{1.01} = 2.75\text{ kg}\cdot\text{m}^{-0.8}, \qquad \delta k = k\,\delta\ln(k) = 2.75(0.97) = 2.67 \implies k = 2.8 \pm 2.7\text{ kg}\cdot\text{m}^{-0.8} \\
-I &= (2.8 \pm 2.7)R^{2.8 \pm 0.8}
-\end{align*}
+
+% Graph 2: Moment of Inertia vs. Radius Squared
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={Moment of Inertia vs. Radius Squared},
+    xlabel={Radial Distance Squared, $R^2$ (m$^2$)},
+    ylabel={Moment of Inertia, $I_{\text{masses}}$ (kg$\cdot$m$^2$)},
+    width=0.85\textwidth,
+    height=0.45\textwidth,
+    grid=major,
+    xmin=0.013, xmax=0.100,
+    ymin=0, ymax=0.12,
+    legend pos=north west,
+]
+
+\addplot+[
+    only marks,
+    mark=*,
+    error bars/.cd,
+    x dir=both,
+    x explicit,
+    y dir=both,
+    y explicit,
+]
+table[
+    x=R2,
+    y=I,
+    x error=R2err,
+    y error=Ierr
+] {
+R2       R2err       I       Ierr
+0.014884 0.000244    0.0056  0.0006
+0.017424 0.000264    0.0086  0.0006
+0.020164 0.000284    0.0119  0.0007
+0.023104 0.000304    0.0163  0.0008
+0.026244 0.000324    0.0150  0.0007
+0.029584 0.000344    0.0173  0.0008
+0.033124 0.000364    0.0225  0.0009
+0.036864 0.000384    0.0261  0.0010
+0.040804 0.000404    0.0283  0.0010
+0.044944 0.000424    0.0309  0.0010
+0.049284 0.000444    0.0358  0.0011
+0.053824 0.000464    0.0383  0.0012
+0.058564 0.000484    0.0417  0.0012
+0.063504 0.000504    0.0430  0.0013
+0.068644 0.000524    0.0482  0.0014
+0.073984 0.000544    0.0543  0.0015
+0.079524 0.000564    0.0590  0.0016
+0.085264 0.000584    0.0639  0.0016
+0.091204 0.000604    0.0800  0.0019
+0.097344 0.000624    0.1023  0.0023
+};
+
+% Linear best-fit line
+\addplot[domain=0.014884:0.097344, samples=100, thick]
+    {0.94208*x - 0.01004};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Moment of inertia of the adjustable masses as a function of the square of their radial distance from the axis of rotation.}
+\end{figure}
 
 \section*{Conclusion}
-Moving the adjustable masses farther from the axis of rotation increased their moment of inertia, confirming that rotational inertia depends on how mass is distributed relative to the axis rather than total mass alone. The experimental relationship found was $I = (2.8 \pm 2.7)R^{2.8 \pm 0.8}$, where $I$ is in $\text{kg}\cdot\text{m}^2$ and $R$ is in $\text{m}$. For point masses, $I = (4m)R^2$ predicts an exponent of $2$. The measured exponent range of $2.0$ to $3.6$ barely reaches $2$ at its lower bound, with a central value steeper than expected. Systematic and human error explain this discrepancy: kinetic friction in the demonstrator's bearings exerts a retarding torque that increases drop times $t$, and because $I \propto t^2$ with the longest drops occurring at larger radii, friction disproportionately inflates $I$ at outer positions and steepens the slope. Additionally, treating the adjustable cylinders as point masses ignores their own rotational inertia about their centers of mass ($I = 4(I_{\text{cm}} + mR^2)$), while reaction time during hand-timing introduces random scatter across trials.
+
+Moving the adjustable masses farther from the axis of rotation increased the system's moment of inertia, supporting the theoretical relationship $I\propto R^2$. As the radial distance increased from $0.122\text{ m}$ to $0.312\text{ m}$, the moment of inertia contributed by the adjustable masses increased from $0.0056\text{ kg}\cdot\text{m}^2$ to $0.1023\text{ kg}\cdot\text{m}^2$. Graph 2, which plots moment of inertia against radial distance squared, showed a more linear relationship than Graph 1, supporting the prediction that moment of inertia depends on the square of the distance from the axis. The experimental linear fit was $I_{\text{masses}}=0.942R^2-0.010$, with the slope representing the estimated combined mass of the four adjustable masses.
+
+Several sources of experimental error may have affected these results. Human reaction time when starting and stopping the stopwatch could have introduced inconsistencies in the measured drop times. In addition, human error when measuring the distances of the adjustable masses from the center of rotation could have affected the recorded radial positions. Switching equipment partway through the measurements may also have introduced inconsistencies between trials. Finally, friction in the demonstrator's axle could have affected the measured angular acceleration and therefore the calculated moment of inertia. Despite these limitations, the results generally support the theoretical relationship between rotational inertia and the radial distribution of mass.
 
 \end{document}
